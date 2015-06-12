@@ -11,22 +11,34 @@
  	http://www.springframework.org/schema/context
  	http://www.springframework.org/schema/context/spring-context-4.1.xsd">
     <import resource="classpath:META-INF/cxf/cxf.xml" />
-    
     <context:component-scan base-package="com.visitamaresh.ws.demo.*" />
-    
     <bean id="cxfServiceImpl" class="com.visitamaresh.ws.demo.CxfRestServiceImpl" />
     <bean id="employeeDao" class="com.visitamaresh.ws.demo.EmployeeDao" />
-    
+    <bean id="reqHandler" class="com.visitamaresh.ws.demo.MyRequestHandler" />
+    <bean id="resHandler" class="com.visitamaresh.ws.demo.MyResponseHandler" />
+    <bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+    <bean id="logOutbound" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
     <jaxrs:server id="employeeService" address="/employeeservices">
-        <jaxrs:providers>
-            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
-        </jaxrs:providers>
         <jaxrs:serviceBeans>
             <ref bean="cxfServiceImpl" />
         </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+            <ref bean="reqHandler" />
+            <ref bean="resHandler" />
+        </jaxrs:providers>
         <jaxrs:extensionMappings>
             <entry key="xml" value="application/xml" />
             <entry key="json" value="application/json" />
         </jaxrs:extensionMappings>
+        <jaxrs:inInterceptors>
+            <ref bean="logInbound" />
+        </jaxrs:inInterceptors>
+        <jaxrs:outInterceptors>
+            <ref bean="logOutbound" />
+        </jaxrs:outInterceptors>
+        <jaxrs:invoker>
+            <bean class="com.visitamaresh.ws.demo.MyCustomInvoker" />
+        </jaxrs:invoker>
     </jaxrs:server>
 </beans>

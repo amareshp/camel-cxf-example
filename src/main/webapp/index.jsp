@@ -29,6 +29,9 @@
             <strong>http://localhost:8080/camel-cxf-example/rest/employeeservices?_wadl </strong>
         <h2>Access service at</h2>
             <strong>http://localhost:8080/camel-cxf-example/rest/employeeservices/getemployeedetail?employeeId=1 </strong>
+        <h2>Request either xml or json response format (append .json or .xml to the operation)</h2>
+            <strong>http://localhost:8080/camel-cxf-example/rest/employeeservices/getemployeedetail.json?employeeId=1 </strong><br>
+            <strong>http://localhost:8080/camel-cxf-example/rest/employeeservices/getemployeedetail.xml?employeeId=1 </strong><br>
     </div>
 </body>
 </html>
