@@ -33,5 +33,5 @@ public interface CxfRestService
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("/getemployeedetail")
 	public Response getEmployeeDetail(@QueryParam("employeeId") String employeeId);
-	
+
 }

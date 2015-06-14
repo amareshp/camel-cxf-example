@@ -15,4 +15,5 @@ public class CxfRestServiceImpl implements CxfRestService {
         }
         return Response.ok(employeeDao.getEmployeeDetails(employeeId)).build();
     }
+    
 }

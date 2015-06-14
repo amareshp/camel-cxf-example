@@ -41,4 +41,5 @@
             <bean class="com.visitamaresh.ws.demo.MyCustomInvoker" />
         </jaxrs:invoker>
     </jaxrs:server>
+    
 </beans>
