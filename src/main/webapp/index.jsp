@@ -36,6 +36,10 @@
         <h2>Rest endpoints</h2>
             <strong>http://localhost:8080/camel-cxf-example/camel/user/findAll</strong><br>
             <strong>http://localhost:8080/camel-cxf-example/camel/user/1</strong><br>
+        <h1>Here is a route with a processor example.</h1>
+        <strong><em>camel cxf endpoint defined in camel-beans.xml. Routing in CamelRoute.java</em></strong><br><br>
+            <strong>http://localhost:8080/camel-cxf-example/rest/hello</strong><br>
+            <strong>http://localhost:8080/camel-cxf-example/rest/hello?name=John</strong><br>
     </div>
 </body>
 </html>

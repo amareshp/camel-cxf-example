@@ -34,6 +34,8 @@ public class CamelRoute extends RouteBuilder {
 
             .get("/findAll").description("Find all users").outTypeList(User.class)
                 .to("bean:userService?method=listUsers");
+        //camel route example
+        from("cxf:bean:routerEndpoint").process(new CamelRouteProcessor()).to("file:/Users/apatta2/MyData/temp");
     }
 
 }

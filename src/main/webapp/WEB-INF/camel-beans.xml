@@ -15,6 +15,12 @@
     <bean id="userRoutes" class="com.visitamaresh.ws.demo.CamelRoute" />
     <!-- a bean for user services -->
     <bean id="userService" class="com.visitamaresh.ws.demo.UserService" />
+    <bean id="helloService" class="com.va.ws.camel.cxf.hello.HelloServiceImpl" />
+    
+    <!-- http://localhost:8080/camel-cxf-example/camel/hello OR /hello -->
+     <cxf:cxfEndpoint id="routerEndpoint" address="/hello"
+            serviceClass="com.va.ws.camel.cxf.hello.HelloService"/>
+                
     <camelContext id="myCamel"
         xmlns="http://camel.apache.org/schema/spring">
         <routeBuilder ref="userRoutes" />
