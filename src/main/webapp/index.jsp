@@ -32,6 +32,10 @@
         <h2>Request either xml or json response format (append .json or .xml to the operation)</h2>
             <strong>http://localhost:8080/camel-cxf-example/rest/employeeservices/getemployeedetail.json?employeeId=1 </strong><br>
             <strong>http://localhost:8080/camel-cxf-example/rest/employeeservices/getemployeedetail.xml?employeeId=1 </strong><br>
+        <h1>Here are the routes created by Camel CXF.</h1>
+        <h2>Rest endpoints</h2>
+            <strong>http://localhost:8080/camel-cxf-example/camel/user/findAll</strong><br>
+            <strong>http://localhost:8080/camel-cxf-example/camel/user/1</strong><br>
     </div>
 </body>
 </html>

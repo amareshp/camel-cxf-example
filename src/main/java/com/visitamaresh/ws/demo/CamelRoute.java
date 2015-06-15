@@ -1,27 +1,39 @@
 package com.visitamaresh.ws.demo;
 
-import java.util.Set;
-
-import javax.annotation.processing.Completion;
-import javax.annotation.processing.ProcessingEnvironment;
-import javax.annotation.processing.Processor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.lang.model.SourceVersion;
-import javax.lang.model.element.AnnotationMirror;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.TypeElement;
-
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.cxf.message.Exchange;
+import org.apache.camel.model.rest.RestBindingMode;
 
+/**
+ * Define REST services using the Camel REST DSL
+ */
 public class CamelRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
 
-        // Defines the starting endpoint as the Spring bean jxRsServer (in
-        // applicationContext.xml)
-        System.out.println("In the camel router section...");
+        restConfiguration().component("servlet").bindingMode(RestBindingMode.json)
+        // and output using pretty print
+        .dataFormatProperty("prettyPrint", "true")
+        // setup context path and port number that Apache Tomcat will deploy
+        // this application with, as we use the servlet component, then we
+        // need to aid Camel to tell it these details so Camel knows the url
+        // to the REST services.
+        // Notice: This is optional, but needed if the RestRegistry should
+        // enlist accurate information. You can access the RestRegistry
+        // from JMX at runtime
+        .contextPath("camel-cxf-example/camel").port(8080);        
+        // this user REST service is json only
+        rest("/user").description("User rest service")
+            .consumes("application/json").produces("application/json")
+
+            .get("/{id}").description("Find user by id").outType(User.class)
+                .to("bean:userService?method=getUser(${header.id})")
+
+            .put().description("Updates or create a user").type(User.class)
+                .to("bean:userService?method=updateUser")
+
+            .get("/findAll").description("Find all users").outTypeList(User.class)
+                .to("bean:userService?method=listUsers");
     }
+
 }

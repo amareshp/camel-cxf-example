@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:camel="http://camel.apache.org/schema/spring"
-       xmlns:cxf="http://camel.apache.org/schema/cxf"
-       xsi:schemaLocation="
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
        http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
-  <!-- We still need it for loading the CXFServlet -->
-  <import resource="classpath:META-INF/cxf/cxf.xml"/>
-  
-  <!--
-  <bean id="myRoutes" class="com.visitamaresh.ws.demo.CamelRoute"/>
- 
-  <camelContext xmlns="http://camel.apache.org/schema/spring">
-    <routeBuilder ref="myRoutes"/>
-  </camelContext>
-   -->
-   
+    <!-- We still need it for loading the CXFServlet -->
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <!-- use camel-metrics route policy to gather metrics for all routes -->
+    <bean id="metricsRoutePolicyFactory"
+        class="org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicyFactory" />
+    <!-- a rest service which uses binding to/from pojos -->
+    <bean id="userRoutes" class="com.visitamaresh.ws.demo.CamelRoute" />
+    <!-- a bean for user services -->
+    <bean id="userService" class="com.visitamaresh.ws.demo.UserService" />
+    <camelContext id="myCamel"
+        xmlns="http://camel.apache.org/schema/spring">
+        <routeBuilder ref="userRoutes" />
+    </camelContext>
 </beans>
