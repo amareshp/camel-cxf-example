@@ -9,9 +9,11 @@
     <url>http://maven.apache.org</url>
     <properties>
         <camel-web>2.5.0</camel-web>
+        <cxf.version>2.7.16</cxf.version>
         <camel.version>2.15.2</camel.version>
         <xbean-spring-version>3.5</xbean-spring-version>
         <jackson.version>1.9.12</jackson.version>
+        <jackson.jaxrs.version>1.9.9</jackson.jaxrs.version>
         <restlet-version>2.3.1</restlet-version>
     </properties>
     <build>
@@ -54,34 +56,39 @@
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>2.7.13</version>
+            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http</artifactId>
-            <version>2.7.13</version>
+            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http-jetty</artifactId>
-            <version>2.7.13</version>
+            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-            <version>2.7.13</version>
+            <version>${cxf.version}</version>
         </dependency>
         <!-- camel-cxf -->
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf</artifactId>
-            <version>2.15.2</version>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jetty</artifactId>
+            <version>${camel.version}</version>
         </dependency>
         <!-- Jackson The JSON Producer dependency -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-jaxrs</artifactId>
-            <version>${jackson.version}</version>
+            <version>${jackson.jaxrs.version}</version>
         </dependency>
         <!-- camel cxf -->
         <dependency>
@@ -122,15 +129,14 @@
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-jaxrs</artifactId>
+            <artifactId>jackson-xc</artifactId>
             <version>${jackson.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-xc</artifactId>
-            <version>${jackson.version}</version>
-            <type>jar</type>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>2.5.3</version>
         </dependency>
     </dependencies>
 </project>

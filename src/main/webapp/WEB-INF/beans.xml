@@ -18,6 +18,7 @@
     <bean id="resHandler" class="com.visitamaresh.ws.demo.MyResponseHandler" />
     <bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
     <bean id="logOutbound" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+    
     <jaxrs:server id="employeeService" address="/employeeservices">
         <jaxrs:serviceBeans>
             <ref bean="cxfServiceImpl" />
